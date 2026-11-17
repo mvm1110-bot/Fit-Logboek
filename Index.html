@@ -1,0 +1,786 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Fit logboek">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAAB90lEQVR42u3cwVECQRCGUbdr0yAHQiEIycAwDMGgDImDRygLDuz0P/PekYt210cx7Fhup+vlAx4pK0AciANxIA7EgTgQB+JAHIgDxIE4EAfiQByIA3EgDsSBOEAciANxIA7EgTgQB+JAHIgDxIE4EAfiQByIA3EgDsSBOBAHiANxIA7EgTgQB+JAHIgDcYA4EAfiQByIA3EgDsSBOFjHfsDP+P3+uX/x/PVp+813WEOm+ud1+uywhkylj4gd1qip9NF/hw6kiANxIA6OsDf8nVZ4LhIxY0VsbbLvNSkzVsTWZuojaMZK2docfWTN6ECKOBAH4kAciANxIA7EgThYV4tb2ZceGK/wl4V/Mw6/pK2sMpYyfDM+VhAH4kAciANxIA7EgTgQB+IYx7/4abuZvc8WnrxKiI4pa0YfK4gDcSAOxIE4EAfiQByIA3E08Mwz4/SLmKwZK2h3c1zRBc1YKbub6fI2ZcY97r01dx/OHDiQIg7EgThW/U6fe2593w5r4GzKaL7DGjWbMvrvcDtdL7aPAyniQByIA3EgDsSBOBAH4gBxIA7EgTgQB+JAHIgDcSAOEAfiQByIA3EgDsSBOBAH4kAcIA7EgTgQB+JAHIgDcSAOxAHiQByIA3EgDsSBOBAH4kAcIA7EgTgQB+JAHIgDcSAOFnEDavNtHWKpnTYAAAAASUVORK5CYII=">
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAAB90lEQVR42u3cwVECQRCGUbdr0yAHQiEIycAwDMGgDImDRygLDuz0P/PekYt210cx7Fhup+vlAx4pK0AciANxIA7EgTgQB+JAHIgDxIE4EAfiQByIA3EgDsSBOEAciANxIA7EgTgQB+JAHIgDxIE4EAfiQByIA3EgDsSBOBAHiANxIA7EgTgQB+JAHIgDcYA4EAfiQByIA3EgDsSBOFjHfsDP+P3+uX/x/PVp+813WEOm+ud1+uywhkylj4gd1qip9NF/hw6kiANxIA6OsDf8nVZ4LhIxY0VsbbLvNSkzVsTWZuojaMZK2docfWTN6ECKOBAH4kAciANxIA7EgThYV4tb2ZceGK/wl4V/Mw6/pK2sMpYyfDM+VhAH4kAciANxIA7EgTgQB+IYx7/4abuZvc8WnrxKiI4pa0YfK4gDcSAOxIE4EAfiQByIA3E08Mwz4/SLmKwZK2h3c1zRBc1YKbub6fI2ZcY97r01dx/OHDiQIg7EgThW/U6fe2593w5r4GzKaL7DGjWbMvrvcDtdL7aPAyniQByIA3EgDsSBOBAH4gBxIA7EgTgQB+JAHIgDcSAOEAfiQByIA3EgDsSBOBAH4kAcIA7EgTgQB+JAHIgDcSAOxAHiQByIA3EgDsSBOBAH4kAcIA7EgTgQB+JAHIgDcSAOFnEDavNtHWKpnTYAAAAASUVORK5CYII=">
+<title>Fit logboek</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EDF1EC; --surface:#FFFFFF; --sunk:#E2E8E1; --ink:#14212A; --muted:#56636A; --line:#D0D8CF;
+  --pine:#1D6550; --pine-soft:#D4E9DF; --cobalt:#2E48BD; --cobalt-soft:#DCE2F8; --alert:#A3331F; --on-accent:#FFFFFF;
+  color-scheme:light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0E1613; --surface:#16201C; --sunk:#1D2925; --ink:#E6EDE8; --muted:#98A49E; --line:#2A3631;
+    --pine:#62C4A0; --pine-soft:#1A3329; --cobalt:#93A6FF; --cobalt-soft:#1E2648; --alert:#F08A73; --on-accent:#0E1613;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0E1613; --surface:#16201C; --sunk:#1D2925; --ink:#E6EDE8; --muted:#98A49E; --line:#2A3631;
+  --pine:#62C4A0; --pine-soft:#1A3329; --cobalt:#93A6FF; --cobalt-soft:#1E2648; --alert:#F08A73; --on-accent:#0E1613;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px);-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Barlow',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;font-size:17px;line-height:1.45}
+main{max-width:560px;margin:0 auto;padding:12px 16px calc(92px + env(safe-area-inset-bottom,0px))}
+h1,h2,h3,p{margin:0}
+button,input,textarea,select{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--cobalt);outline-offset:2px}
+.num{font-variant-numeric:tabular-nums}
+.cond{font-family:'Barlow Condensed','Arial Narrow',sans-serif}
+.muted{color:var(--muted)}
+[hidden]{display:none !important}
+
+/* date bar + titles */
+.datebar{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:4px 0 14px}
+.datetitle,.pagetitle{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:700;font-size:30px;letter-spacing:.2px;text-transform:capitalize}
+.pagetitle{text-transform:none;margin:4px 0 14px}
+.iconbtn{width:44px;height:44px;border-radius:22px;border:1px solid var(--line);background:var(--surface);font-size:24px;line-height:1;display:grid;place-items:center;flex:none}
+.iconbtn:disabled{opacity:.35;cursor:default}
+
+/* hero */
+.hero{padding:6px 0 18px;border-bottom:1px solid var(--line);margin-bottom:12px}
+.hero-num{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.hero-num .big{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:700;font-size:84px;line-height:.9;letter-spacing:-1px}
+.hero-of{color:var(--muted);font-size:18px}
+.hero-left{margin:6px 0 10px;font-weight:600}
+.hero-left.over{color:var(--alert)}
+.bar{height:10px;border-radius:5px;background:var(--sunk);overflow:hidden}
+.bar span{display:block;height:100%;border-radius:5px;background:var(--ink);transition:width .3s ease}
+.bar.pine span{background:var(--pine)}
+.bar.over span{background:var(--alert)}
+.macro-row{display:flex;justify-content:space-between;margin:14px 0 6px;font-size:16px}
+.minor{display:flex;gap:18px;margin-top:10px;color:var(--muted);font-size:15px}
+.weeknote{background:var(--pine-soft);border-radius:10px;padding:10px 12px;font-size:15px;margin-bottom:6px}
+
+/* meals */
+.meal{padding:14px 0;border-bottom:1px solid var(--line)}
+.meal-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+.meal-head h2{font-size:19px;font-weight:600}
+.entries{list-style:none;margin:0 0 6px;padding:0}
+.entries li{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 0}
+.e-name{font-weight:500}
+.e-sub{color:var(--muted);font-size:14px}
+.e-right{display:flex;align-items:center;gap:6px}
+.e-kcal{font-weight:600}
+.del{width:36px;height:36px;border:0;background:transparent;color:var(--muted);font-size:22px;border-radius:18px}
+.del[data-armed]{background:var(--alert);color:var(--on-accent);font-size:13px;width:auto;padding:0 10px}
+.addbtn{border:1px dashed var(--line);background:transparent;border-radius:10px;padding:10px 12px;width:100%;text-align:left;color:var(--pine);font-weight:600}
+
+/* generic */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.card h2{font-size:20px;font-weight:600;margin-bottom:8px}
+.field{display:flex;flex-direction:column;gap:4px;margin:10px 0;font-size:15px;color:var(--muted)}
+.field input,.field textarea,.field select,input[type=search]{font-size:17px;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:11px 12px;width:100%;min-height:46px}
+.field textarea{min-height:70px;resize:vertical}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.grid3 .field,.grid2 .field{margin:6px 0}
+.primary{background:var(--ink);color:var(--bg);border:0;border-radius:12px;padding:14px 16px;font-weight:600;min-height:50px}
+.primary.pine{background:var(--pine);color:var(--on-accent)}
+.primary.cobalt{background:var(--cobalt);color:var(--on-accent)}
+.ghost{background:transparent;border:1px solid var(--line);border-radius:12px;padding:12px 16px;font-weight:600;min-height:48px}
+.danger{background:transparent;border:1px solid var(--alert);color:var(--alert);border-radius:12px;padding:12px 16px;font-weight:600;min-height:48px}
+.danger[data-armed]{background:var(--alert);color:var(--on-accent)}
+.wide{width:100%;display:block;margin-top:10px;text-align:center}
+.btnrow{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+.btnrow > *{flex:1 1 160px;text-align:center}
+.banner{background:var(--alert);color:var(--on-accent);padding:10px 12px;border-radius:10px;margin-bottom:12px;font-size:15px}
+
+/* training */
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;margin:0 -16px 6px;padding-left:16px;padding-right:16px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:8px 12px;text-align:left;min-height:52px}
+.chip .d{display:block;font-size:13px;color:var(--muted)}
+.chip .n{font-weight:600;font-size:15px}
+.chip[aria-pressed="true"]{background:var(--cobalt);border-color:var(--cobalt);color:var(--on-accent)}
+.chip[aria-pressed="true"] .d{color:var(--on-accent);opacity:.8}
+.chip .done{display:inline-block;width:7px;height:7px;border-radius:4px;background:var(--pine);margin-left:6px;vertical-align:middle}
+.chip[aria-pressed="true"] .done{background:var(--on-accent)}
+.restnote{font-size:15px;color:var(--muted);margin:6px 0}
+.guide{font-size:15px;background:var(--cobalt-soft);border-radius:10px;padding:10px 12px;margin:8px 0 12px}
+.ex{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:12px}
+.ex header{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.ex h3{font-size:18px;font-weight:600}
+.target{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:700;font-size:20px;color:var(--cobalt);white-space:nowrap}
+.prev{font-size:14px;color:var(--muted);margin-top:2px}
+.hint{font-size:14px;color:var(--pine);font-weight:600;margin-top:4px}
+.sets{margin-top:10px}
+.sets-head,.setrow{display:grid;grid-template-columns:34px 1fr 1fr;gap:8px;align-items:center}
+.sets-head{font-size:13px;color:var(--muted);margin-bottom:4px}
+.setrow{margin-bottom:6px}
+.setno{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:700;font-size:20px;color:var(--muted);text-align:center}
+.setrow input{font-size:17px;border:1px solid var(--line);border-radius:10px;padding:10px;background:var(--bg);min-height:46px;width:100%;text-align:center}
+.link{background:none;border:0;color:var(--cobalt);font-weight:600;padding:8px 0}
+.pace{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:700;font-size:34px;margin:4px 0}
+.pace small{font-family:'Barlow',sans-serif;font-weight:500;font-size:15px;color:var(--muted)}
+.seg{display:flex;background:var(--sunk);border-radius:12px;padding:3px;gap:3px;margin:8px 0}
+.seg button{flex:1;border:0;background:transparent;border-radius:9px;padding:9px 4px;font-size:15px;font-weight:500;min-height:42px}
+.seg button[aria-pressed="true"]{background:var(--surface);font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,.12)}
+.history{list-style:none;margin:0;padding:0}
+.history li{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-top:1px solid var(--line)}
+.history .h-date{font-weight:600}
+.history .h-sum{font-size:14px;color:var(--muted)}
+.h-actions{display:flex;gap:4px;align-items:center}
+.small-btn{border:1px solid var(--line);background:transparent;border-radius:10px;padding:6px 10px;font-size:14px;min-height:36px}
+
+/* progress */
+.stats3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:8px 0}
+.stat .v{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:700;font-size:36px;line-height:1}
+.stat .l{font-size:14px;color:var(--muted)}
+.weekdots{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 4px}
+.weekdots span{font-size:14px;border-radius:8px;padding:4px 8px;background:var(--sunk);color:var(--muted)}
+.weekdots span.ok{background:var(--pine);color:var(--on-accent)}
+.chart{width:100%;height:auto;display:block;margin:10px 0}
+.legend{display:flex;gap:14px;font-size:14px;color:var(--muted)}
+.legend i{display:inline-block;width:12px;height:3px;border-radius:2px;vertical-align:middle;margin-right:5px}
+.mtable{width:100%;border-collapse:collapse;font-size:15px}
+.mtable th{text-align:left;font-weight:500;color:var(--muted);font-size:13px;padding:6px 4px}
+.mtable td{padding:8px 4px;border-top:1px solid var(--line)}
+.tablewrap{overflow-x:auto}
+.filelabel{display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
+.backuptext{width:100%;min-height:120px;font-size:12px;font-family:ui-monospace,Menlo,monospace;margin-top:8px;border:1px solid var(--line);border-radius:10px;padding:8px;background:var(--bg)}
+
+/* tabs */
+.tabs{position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--line);display:flex;justify-content:center;padding-bottom:env(safe-area-inset-bottom,0px);z-index:20}
+.tabs-in{display:flex;width:100%;max-width:560px}
+.tabs button{flex:1;border:0;background:transparent;padding:10px 4px 12px;font-weight:600;font-size:16px;color:var(--muted);min-height:58px;position:relative}
+.tabs button[aria-current="page"]{color:var(--ink)}
+.tabs button[aria-current="page"]::before{content:"";position:absolute;top:0;left:30%;right:30%;height:3px;border-radius:0 0 3px 3px;background:var(--pine)}
+.tabs button[data-tab="train"][aria-current="page"]::before{background:var(--cobalt)}
+.tabs button[data-tab="progress"][aria-current="page"]::before{background:var(--ink)}
+
+/* sheet */
+.backdrop{position:fixed;inset:0;background:rgba(10,16,14,.45);z-index:40;display:flex;align-items:flex-end;justify-content:center}
+.sheet{background:var(--surface);width:100%;max-width:560px;max-height:88vh;overflow-y:auto;border-radius:18px 18px 0 0;padding:14px 16px calc(18px + env(safe-area-inset-bottom,0px));animation:up .22s ease}
+@keyframes up{from{transform:translateY(30px);opacity:.6}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion: reduce){.sheet{animation:none}.bar span{transition:none}}
+.sheet-head{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.sheet-head h2{flex:1;font-size:21px;font-weight:600}
+.foodlist{list-style:none;margin:8px 0 0;padding:0}
+.foodlist li{display:flex;align-items:center;border-top:1px solid var(--line)}
+.food{flex:1;border:0;background:transparent;text-align:left;padding:11px 2px;min-height:52px}
+.food .fn{font-weight:500;display:block}
+.food .fi{font-size:14px;color:var(--muted)}
+.tag{font-size:12px;font-weight:600;color:var(--pine);background:var(--pine-soft);border-radius:6px;padding:1px 6px;margin-left:6px;vertical-align:middle}
+.listlabel{font-size:14px;color:var(--muted);margin:14px 0 2px}
+.preview{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:12px 0;text-align:center}
+.preview div{background:var(--sunk);border-radius:10px;padding:8px 4px}
+.preview b{display:block;font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-size:26px;line-height:1.1}
+.preview span{font-size:13px;color:var(--muted)}
+.check{display:flex;gap:10px;align-items:center;margin:10px 0;font-size:16px}
+.check input{width:22px;height:22px}
+.note{font-size:13px;color:var(--muted);margin-top:10px}
+
+.toast{position:fixed;left:50%;bottom:calc(76px + env(safe-area-inset-bottom,0px));transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:12px;font-size:15px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:60;max-width:90vw;text-align:center}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+<main id="app">
+  <div id="storageBanner" class="banner" hidden>Opslaan in deze browser lukt niet. Je gegevens blijven alleen staan zolang de pagina open is.</div>
+  <section id="view-food" class="view"></section>
+  <section id="view-train" class="view" hidden></section>
+  <section id="view-progress" class="view" hidden></section>
+</main>
+<nav class="tabs" aria-label="Onderdelen">
+  <div class="tabs-in">
+    <button data-tab="food" aria-current="page">Voeding</button>
+    <button data-tab="train">Training</button>
+    <button data-tab="progress">Voortgang</button>
+  </div>
+</nav>
+<div class="backdrop" id="backdrop" hidden>
+  <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle"></div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+'use strict';
+const KEY = 'fitlogboek_v1';
+
+/* Waarden per 100 g (unit g) of per stuk (unit stuk). Benaderingen. */
+const FOODS = [
+  {n:'Magere kwark', unit:'g', base:100, def:250, kcal:55, p:9, c:4, f:0.2},
+  {n:'Skyr naturel', unit:'g', base:100, def:150, kcal:63, p:11, c:4, f:0.2},
+  {n:'Hüttenkäse', unit:'g', base:100, def:150, kcal:98, p:11, c:3, f:4.5},
+  {n:'Halfvolle melk', unit:'g', base:100, def:250, kcal:46, p:3.5, c:4.8, f:1.5},
+  {n:'Ei', unit:'stuk', base:1, def:2, kcal:75, p:7, c:0.4, f:5},
+  {n:'Whey eiwitshake (schep 30 g)', unit:'stuk', base:1, def:1, kcal:120, p:24, c:3, f:1.5},
+  {n:'Havermout', unit:'g', base:100, def:50, kcal:370, p:13, c:59, f:7},
+  {n:'Volkorenbrood (snee)', unit:'stuk', base:1, def:2, kcal:85, p:3.7, c:14, f:1},
+  {n:'Kaas 30+ (plak)', unit:'stuk', base:1, def:1, kcal:54, p:6, c:0, f:3.2},
+  {n:'Pindakaas', unit:'g', base:100, def:15, kcal:600, p:25, c:12, f:49},
+  {n:'Kipfilet (rauw)', unit:'g', base:100, def:120, kcal:105, p:23, c:0, f:1.5},
+  {n:'Rundergehakt mager (rauw)', unit:'g', base:100, def:100, kcal:135, p:21, c:0, f:5.5},
+  {n:'Zalm (rauw)', unit:'g', base:100, def:125, kcal:200, p:20, c:0, f:13},
+  {n:'Tonijn in water (uitgelekt)', unit:'g', base:100, def:110, kcal:110, p:25, c:0, f:1},
+  {n:'Tofu', unit:'g', base:100, def:150, kcal:125, p:13, c:2, f:7},
+  {n:'Linzen (gekookt)', unit:'g', base:100, def:150, kcal:116, p:9, c:20, f:0.4},
+  {n:'Rijst (ongekookt)', unit:'g', base:100, def:75, kcal:355, p:7.5, c:78, f:0.8},
+  {n:'Volkoren pasta (ongekookt)', unit:'g', base:100, def:80, kcal:350, p:13, c:64, f:2.5},
+  {n:'Aardappelen', unit:'g', base:100, def:250, kcal:77, p:2, c:17, f:0.1},
+  {n:'Groente (gemengd)', unit:'g', base:100, def:200, kcal:30, p:2, c:4, f:0.3},
+  {n:'Banaan', unit:'stuk', base:1, def:1, kcal:105, p:1.3, c:27, f:0.4},
+  {n:'Appel', unit:'stuk', base:1, def:1, kcal:80, p:0.4, c:19, f:0.2},
+  {n:'Blauwe bessen', unit:'g', base:100, def:100, kcal:57, p:0.7, c:14, f:0.3},
+  {n:'Avocado (halve)', unit:'stuk', base:1, def:1, kcal:120, p:1.5, c:6, f:11},
+  {n:'Olijfolie', unit:'g', base:100, def:10, kcal:884, p:0, c:0, f:100},
+  {n:'Pure chocolade 70%', unit:'g', base:100, def:20, kcal:580, p:9, c:33, f:43},
+  {n:'Chips naturel', unit:'g', base:100, def:30, kcal:540, p:6, c:50, f:35},
+  {n:'Snoep (winegums)', unit:'g', base:100, def:50, kcal:340, p:4, c:80, f:0.2},
+  {n:'Wijn (glas)', unit:'stuk', base:1, def:1, kcal:100, p:0, c:3, f:0},
+  {n:'Bier (glas)', unit:'stuk', base:1, def:1, kcal:105, p:1, c:9, f:0}
+];
+
+const SESSIONS = [
+  {id:'boven', day:1, d:'Ma', name:'Bovenlichaam', kind:'kracht',
+    guide:'Hoofdliften op 1–2 herhalingen over. Alle sets bovenin de range gehaald? Volgende keer iets zwaarder.',
+    ex:[
+      {id:'bench', n:'Bench press of dumbbell press', sets:4, lo:6, hi:8},
+      {id:'pullup', n:'Gewogen pull-ups of lat pulldown', sets:4, lo:6, hi:8},
+      {id:'ohp', n:'Overhead press', sets:3, lo:8, hi:10},
+      {id:'row', n:'Cable of dumbbell row', sets:3, lo:10, hi:12},
+      {id:'facepull', n:'Face pulls', sets:3, lo:12, hi:15},
+      {id:'lateral', n:'Lateral raises', sets:3, lo:12, hi:15}
+    ]},
+  {id:'interval', day:2, d:'Di', name:'Interval of tempo', kind:'run', runType:'Interval',
+    guide:'Wissel per week: 6 × 800 m op 5K-tempo met 2 min rust, of 20–25 min tempoloop. Altijd warming-up en cooling-down.'},
+  {id:'onder', day:3, d:'Wo', name:'Onderlichaam', kind:'kracht',
+    guide:'De zwaarste dag van de week. Hoofdliften op 1–2 herhalingen over.',
+    ex:[
+      {id:'squat', n:'Back squat', sets:4, lo:5, hi:6},
+      {id:'rdl', n:'Roemeense deadlift', sets:4, lo:6, hi:8},
+      {id:'bss', n:'Bulgarian split squat (per been)', sets:3, lo:8, hi:10},
+      {id:'legcurl', n:'Leg curl', sets:3, lo:10, hi:12},
+      {id:'hlr', n:'Hanging leg raises', sets:3, lo:10, hi:15, bw:true}
+    ]},
+  {id:'full', day:5, d:'Vr', name:'Full body', kind:'kracht',
+    guide:'Benen bewust wat lichter: morgen staat de lange loop op het schema. Deadlift niet tot falen.',
+    ex:[
+      {id:'hipthrust', n:'Hip thrust', sets:4, lo:8, hi:10},
+      {id:'dl', n:'Trap bar of sumo deadlift', sets:3, lo:5, hi:5},
+      {id:'incline', n:'Incline dumbbell press', sets:3, lo:10, hi:10},
+      {id:'sarow', n:'Single-arm row', sets:3, lo:10, hi:10},
+      {id:'lunge', n:'Walking lunges (per been)', sets:3, lo:10, hi:12},
+      {id:'plank', n:'Plank', sets:3, lo:30, hi:45, unit:'sec', bw:true}
+    ]},
+  {id:'long', day:6, d:'Za', name:'Lange rustige loop', kind:'run', runType:'Rustig',
+    guide:'8–10 km in praattempo. Bouw de afstand rustig op, maximaal zo’n 10% per week.'}
+];
+const MEALS = ['Ontbijt','Lunch','Diner','Tussendoor'];
+const RUNTYPES = ['Rustig','Interval','Tempo'];
+
+/* ---------- opslag ---------- */
+let storageOk = true;
+function defaults(){ return {v:1, settings:{kcal:2000, p:130}, food:{}, custom:[], workouts:[], measures:[], drafts:{}}; }
+function load(){
+  try{
+    localStorage.setItem(KEY+'_t','1'); localStorage.removeItem(KEY+'_t');
+    const raw = localStorage.getItem(KEY);
+    if(raw){ const o = JSON.parse(raw); return Object.assign(defaults(), o); }
+  }catch(e){ storageOk = false; }
+  return defaults();
+}
+let S = load();
+let saveTimer = null;
+function save(){
+  clearTimeout(saveTimer); saveTimer = null;
+  try{ localStorage.setItem(KEY, JSON.stringify(S)); storageOk = true; }
+  catch(e){ storageOk = false; }
+  document.getElementById('storageBanner').hidden = storageOk;
+}
+function saveSoon(){ clearTimeout(saveTimer); saveTimer = setTimeout(save, 400); }
+window.addEventListener('pagehide', function(){ if(saveTimer) save(); });
+document.addEventListener('visibilitychange', function(){ if(document.visibilityState==='hidden' && saveTimer) save(); });
+
+/* ---------- helpers ---------- */
+const nf0 = new Intl.NumberFormat('nl-NL',{maximumFractionDigits:0});
+const nf1 = new Intl.NumberFormat('nl-NL',{maximumFractionDigits:1});
+const fmt = x => nf0.format(Math.round(x||0));
+const fmt1 = x => nf1.format(x||0);
+function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,7); }
+function num(v){ if(v==null) return NaN; const s=String(v).trim().replace(',','.'); return s===''?NaN:Number(s); }
+function ds(d){ return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+function pd(s){ const a=s.split('-').map(Number); return new Date(a[0],a[1]-1,a[2]); }
+function todayStr(){ return ds(new Date()); }
+function addDays(s,n){ const d=pd(s); d.setDate(d.getDate()+n); return ds(d); }
+function mondayOf(s){ const d=pd(s); d.setDate(d.getDate()-((d.getDay()+6)%7)); return ds(d); }
+function dateLabel(s){
+  const t=todayStr();
+  if(s===t) return 'Vandaag';
+  if(s===addDays(t,-1)) return 'Gisteren';
+  return pd(s).toLocaleDateString('nl-NL',{weekday:'long',day:'numeric',month:'long'});
+}
+function shortDate(s){ return pd(s).toLocaleDateString('nl-NL',{weekday:'short',day:'numeric',month:'short'}); }
+function toast(msg){
+  const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show');
+  clearTimeout(toast._t); toast._t=setTimeout(()=>t.classList.remove('show'),2200);
+}
+/* twee keer tikken om te bevestigen */
+function armed(btn, label){
+  if(btn.dataset.armed){ return true; }
+  btn.dataset.armed='1'; btn.dataset.orig=btn.innerHTML; btn.textContent=label||'Zeker?';
+  setTimeout(()=>{ if(btn.isConnected){ delete btn.dataset.armed; btn.innerHTML=btn.dataset.orig; } },3000);
+  return false;
+}
+
+/* ---------- UI-state ---------- */
+const UI = { tab:'food', foodDate:todayStr(), trainDate:todayStr(), session:null, backupText:null };
+(function initSession(){
+  const wd=new Date().getDay();
+  const s=SESSIONS.find(x=>x.day===wd);
+  if(s){ UI.session=s.id; UI.rest=false; }
+  else { const next=SESSIONS.find(x=>x.day>wd) || SESSIONS[0]; UI.session=next.id; UI.rest=true; }
+})();
+
+/* ================= VOEDING ================= */
+function entryVals(e){ const k=(e.amt||0)/(e.base||1); return {kcal:e.kcal*k, p:e.p*k, c:e.c*k, f:e.f*k}; }
+function dayTotals(d){
+  const t={kcal:0,p:0,c:0,f:0};
+  (S.food[d]||[]).forEach(e=>{ const v=entryVals(e); t.kcal+=v.kcal; t.p+=v.p; t.c+=v.c; t.f+=v.f; });
+  return t;
+}
+function weekStats(d){
+  const m=mondayOf(d); let n=0,kc=0,p=0;
+  for(let i=0;i<7;i++){ const x=addDays(m,i); if((S.food[x]||[]).length){ const t=dayTotals(x); n++; kc+=t.kcal; p+=t.p; } }
+  return {n, kcal:n?kc/n:0, p:n?p/n:0};
+}
+function amtLabel(e){
+  if(e.unit==='g') return fmt1(e.amt)+' g';
+  if(e.unit==='stuk') return e.amt===1 ? '1 stuk' : fmt1(e.amt)+' stuks';
+  return e.amt===1 ? '1 portie' : fmt1(e.amt)+' porties';
+}
+function bar(label, v, max, cls){
+  const pct = max>0 ? Math.min(100, v/max*100) : 0;
+  const over = v>max*1.05 && cls!=='pine';
+  return '<div class="bar '+cls+(over?' over':'')+'" role="progressbar" aria-label="'+label+'" aria-valuemin="0" aria-valuemax="'+Math.round(max)+'" aria-valuenow="'+Math.round(v)+'"><span style="width:'+pct+'%"></span></div>';
+}
+function renderFood(){
+  const d=UI.foodDate, t=dayTotals(d), st=S.settings, left=st.kcal-t.kcal, w=weekStats(d);
+  const entries=S.food[d]||[];
+  let h='<div class="datebar"><button class="iconbtn" data-act="foodPrev" aria-label="Vorige dag">‹</button>'
+    +'<h1 class="datetitle">'+esc(dateLabel(d))+'</h1>'
+    +'<button class="iconbtn" data-act="foodNext" aria-label="Volgende dag"'+(d>=todayStr()?' disabled':'')+'>›</button></div>';
+  h+='<div class="hero"><div class="hero-num"><span class="big num">'+fmt(t.kcal)+'</span><span class="hero-of">van '+fmt(st.kcal)+' kcal</span></div>'
+    +'<p class="hero-left'+(left<0?' over':'')+'">'+(left>=0?'Nog '+fmt(left)+' kcal over':fmt(-left)+' kcal boven je doel')+'</p>'
+    +bar('Calorieën',t.kcal,st.kcal,'ink')
+    +'<div class="macro-row"><span>Eiwit</span><strong class="num">'+fmt(t.p)+' / '+fmt(st.p)+' g</strong></div>'
+    +bar('Eiwit',t.p,st.p,'pine')
+    +'<div class="minor"><span>Koolhydraten '+fmt(t.c)+' g</span><span>Vet '+fmt(t.f)+' g</span></div></div>';
+  if(w.n) h+='<p class="weeknote">Deze week gemiddeld <strong>'+fmt(w.kcal)+' kcal</strong> en <strong>'+fmt(w.p)+' g eiwit</strong> per dag, over '+w.n+(w.n===1?' gelogde dag.':' gelogde dagen.')+'</p>';
+  MEALS.forEach(m=>{
+    const list=entries.filter(e=>e.meal===m);
+    const mk=list.reduce((a,e)=>a+entryVals(e).kcal,0);
+    h+='<section class="meal"><div class="meal-head"><h2>'+m+'</h2><span class="muted num">'+(list.length?fmt(mk)+' kcal':'')+'</span></div>';
+    if(list.length){
+      h+='<ul class="entries">'+list.map(e=>{ const v=entryVals(e);
+        return '<li><div><div class="e-name">'+esc(e.n)+'</div><div class="e-sub">'+esc(amtLabel(e))+', '+fmt(v.p)+' g eiwit</div></div>'
+          +'<div class="e-right"><span class="e-kcal num">'+fmt(v.kcal)+'</span><button class="del" data-act="delEntry" data-id="'+e.id+'" aria-label="'+esc(e.n)+' verwijderen">×</button></div></li>';
+      }).join('')+'</ul>';
+    }
+    h+='<button class="addbtn" data-act="openAdd" data-meal="'+m+'">+ '+m.toLowerCase()+' toevoegen</button></section>';
+  });
+  h+='<p class="note">Voedingswaarden in de lijst zijn benaderingen. Kijk bij twijfel op het etiket en voeg het product toe via Zelf invullen.</p>';
+  document.getElementById('view-food').innerHTML=h;
+}
+
+/* ---- toevoegen-sheet ---- */
+let SH=null, LISTCACHE=[];
+function openAdd(meal){
+  SH={meal:meal, step:'list', q:''};
+  document.getElementById('backdrop').hidden=false;
+  document.body.style.overflow='hidden';
+  renderSheet();
+}
+function closeSheet(){
+  SH=null; document.getElementById('backdrop').hidden=true; document.body.style.overflow='';
+}
+function perLabel(f){
+  if(f.unit==='g') return 'per 100 g: '+fmt(f.kcal)+' kcal, '+fmt1(f.p)+' g eiwit';
+  if(f.unit==='stuk') return 'per stuk: '+fmt(f.kcal)+' kcal, '+fmt1(f.p)+' g eiwit';
+  return 'per portie: '+fmt(f.kcal)+' kcal, '+fmt1(f.p)+' g eiwit';
+}
+function recentFoods(){
+  const out=[], seen=new Set(), days=Object.keys(S.food).sort().reverse();
+  for(const d of days){
+    const arr=(S.food[d]||[]).slice().reverse();
+    for(const e of arr){ if(!seen.has(e.n)){ seen.add(e.n); out.push(e); if(out.length>=6) return out; } }
+  }
+  return out;
+}
+function renderSheet(){
+  const el=document.getElementById('sheet');
+  if(!SH) return;
+  const closeBtn='<button class="iconbtn" data-act="closeSheet" aria-label="Sluiten">×</button>';
+  const seg='<div class="seg" role="group" aria-label="Maaltijd">'+MEALS.map(m=>'<button data-act="setMeal" data-meal="'+m+'" aria-pressed="'+(m===SH.meal)+'">'+m+'</button>').join('')+'</div>';
+  if(SH.step==='list'){
+    el.innerHTML='<div class="sheet-head"><h2 id="sheetTitle">Toevoegen</h2>'+closeBtn+'</div>'+seg
+      +'<input id="q" type="search" placeholder="Zoek, bijvoorbeeld kwark" value="'+esc(SH.q)+'" autocomplete="off" aria-label="Zoek product">'
+      +'<div id="foodList"></div>'
+      +'<button class="ghost wide" data-act="manual">Zelf invullen</button>';
+    renderFoodList();
+  } else if(SH.step==='detail'){
+    const f=SH.food;
+    const unitTxt=f.unit==='g'?'gram':f.unit==='stuk'?'stuks':'porties';
+    el.innerHTML='<div class="sheet-head"><button class="iconbtn" data-act="back" aria-label="Terug">‹</button><h2 id="sheetTitle">'+esc(f.n)+'</h2>'+closeBtn+'</div>'+seg
+      +'<label class="field"><span>Hoeveelheid in '+unitTxt+'</span><input id="amt" type="text" inputmode="decimal" value="'+esc(fmt1(SH.amt))+'"></label>'
+      +'<div id="preview" class="preview"></div>'
+      +'<button class="primary pine wide" data-act="addPicked">Toevoegen aan '+SH.meal.toLowerCase()+'</button>';
+    updatePreview();
+  } else {
+    el.innerHTML='<div class="sheet-head"><button class="iconbtn" data-act="back" aria-label="Terug">‹</button><h2 id="sheetTitle">Zelf invullen</h2>'+closeBtn+'</div>'+seg
+      +'<label class="field"><span>Naam</span><input id="m_n" type="text" placeholder="Bijvoorbeeld pasta pesto"></label>'
+      +'<div class="grid2"><label class="field"><span>Kcal</span><input id="m_kcal" type="text" inputmode="decimal"></label>'
+      +'<label class="field"><span>Eiwit (g)</span><input id="m_p" type="text" inputmode="decimal"></label>'
+      +'<label class="field"><span>Koolhydraten (g)</span><input id="m_c" type="text" inputmode="decimal"></label>'
+      +'<label class="field"><span>Vet (g)</span><input id="m_f" type="text" inputmode="decimal"></label></div>'
+      +'<label class="check"><input id="m_save" type="checkbox" checked> Bewaar in mijn lijst voor de volgende keer</label>'
+      +'<button class="primary pine wide" data-act="addManual">Toevoegen aan '+SH.meal.toLowerCase()+'</button>'
+      +'<p class="note">Vul de waarden in voor één portie zoals je die nu eet.</p>';
+  }
+}
+function renderFoodList(){
+  const box=document.getElementById('foodList'); if(!box) return;
+  const q=SH.q.trim().toLowerCase();
+  LISTCACHE=[]; let h='';
+  const item=(f,src,amt,custIdx)=>{
+    const i=LISTCACHE.push({f:f,amt:amt})-1;
+    return '<li><button class="food" data-act="pick" data-i="'+i+'"><span class="fn">'+esc(f.n)+(src==='custom'?'<span class="tag">Eigen</span>':'')+'</span>'
+      +'<span class="fi">'+(src==='recent'?esc(amtLabel(f)):esc(perLabel(f)))+'</span></button>'
+      +(src==='custom'?'<button class="del" data-act="delCustom" data-ci="'+custIdx+'" aria-label="'+esc(f.n)+' uit je lijst verwijderen">×</button>':'')+'</li>';
+  };
+  if(!q){
+    const rec=recentFoods();
+    if(rec.length) h+='<p class="listlabel">Recent</p><ul class="foodlist">'+rec.map(e=>item(e,'recent',e.amt)).join('')+'</ul>';
+    if(S.custom.length) h+='<p class="listlabel">Mijn producten</p><ul class="foodlist">'+S.custom.map((f,ci)=>item(f,'custom',f.def||1,ci)).join('')+'</ul>';
+    h+='<p class="listlabel">Basislijst</p><ul class="foodlist">'+FOODS.map(f=>item(f,'db',f.def)).join('')+'</ul>';
+  } else {
+    const cu=S.custom.map((f,ci)=>({f,ci})).filter(x=>x.f.n.toLowerCase().includes(q));
+    const db=FOODS.filter(f=>f.n.toLowerCase().includes(q));
+    if(!cu.length && !db.length) h='<p class="listlabel">Niets gevonden voor “'+esc(SH.q)+'”. Kies Zelf invullen om het toe te voegen.</p>';
+    else h='<ul class="foodlist">'+cu.map(x=>item(x.f,'custom',x.f.def||1,x.ci)).join('')+db.map(f=>item(f,'db',f.def)).join('')+'</ul>';
+  }
+  box.innerHTML=h;
+}
+function updatePreview(){
+  const p=document.getElementById('preview'); if(!p||!SH||!SH.food) return;
+  const a=num(SH.amt); const f=SH.food; const k=(isNaN(a)?0:a)/(f.base||1);
+  p.innerHTML='<div><b class="num">'+fmt(f.kcal*k)+'</b><span>kcal</span></div><div><b class="num">'+fmt1(f.p*k)+'</b><span>eiwit g</span></div>'
+    +'<div><b class="num">'+fmt1(f.c*k)+'</b><span>koolh. g</span></div><div><b class="num">'+fmt1(f.f*k)+'</b><span>vet g</span></div>';
+}
+function addEntry(f, amt){
+  const d=UI.foodDate; (S.food[d]=S.food[d]||[]).push({id:uid(), meal:SH.meal, n:f.n, unit:f.unit, base:f.base, kcal:f.kcal, p:f.p, c:f.c, f:f.f, amt:amt});
+  save(); const meal=SH.meal; closeSheet(); renderFood(); toast(f.n+' toegevoegd aan '+meal.toLowerCase());
+}
+
+/* ================= TRAINING ================= */
+function sess(id){ return SESSIONS.find(s=>s.id===id); }
+function findLog(sid, date){ return S.workouts.find(w=>w.session===sid && w.date===date); }
+function draftKey(){ return UI.session+'|'+UI.trainDate; }
+function getDraft(){
+  const k=draftKey(); if(S.drafts[k]) return S.drafts[k];
+  const s=sess(UI.session), log=findLog(s.id, UI.trainDate); let d;
+  if(s.kind==='kracht'){
+    d={ex:{}, note: log?log.note||'':''};
+    s.ex.forEach(e=>{
+      const logged=log&&log.ex&&log.ex[e.id];
+      const n=Math.max(e.sets, logged?logged.length:0);
+      d.ex[e.id]=Array.from({length:n},(_,i)=>logged&&logged[i]?{kg:logged[i].kg?fmt1(logged[i].kg):'',reps:String(logged[i].reps)}:{kg:'',reps:''});
+    });
+  } else {
+    d=log?{type:log.type, km:fmt1(log.km), min:String(Math.floor(log.secs/60)), sec:String(log.secs%60), rpe:log.rpe?String(log.rpe):'', note:log.note||''}
+         :{type:s.runType, km:'', min:'', sec:'', rpe:'', note:''};
+  }
+  S.drafts[k]=d; return d;
+}
+function prevFor(exId, before){
+  let best=null;
+  S.workouts.forEach(w=>{ if(w.ex&&w.ex[exId]&&w.date<before && (!best||w.date>best.date)) best=w; });
+  return best?{date:best.date, sets:best.ex[exId]}:null;
+}
+function setsStr(sets, ex){
+  return sets.map(s=>(s.kg?fmt1(s.kg)+' kg × ':'')+s.reps+(ex.unit==='sec'?' s':'')).join(', ');
+}
+function weekDone(d){
+  const m=mondayOf(d), e=addDays(m,6), done=new Set();
+  S.workouts.forEach(w=>{ if(w.date>=m && w.date<=e) done.add(w.session); });
+  return done;
+}
+function paceStr(secs, km){
+  if(!secs||!km) return null;
+  const p=Math.round(secs/km); return Math.floor(p/60)+':'+String(p%60).padStart(2,'0');
+}
+function timeStr(secs){ const h=Math.floor(secs/3600), m=Math.floor(secs%3600/60), s=secs%60; return (h?h+':'+String(m).padStart(2,'0'):m)+':'+String(s).padStart(2,'0'); }
+function logSummary(w){
+  if(w.kind==='run') return fmt1(w.km)+' km in '+timeStr(w.secs)+' ('+paceStr(w.secs,w.km)+' /km), '+w.type.toLowerCase();
+  let sets=0, vol=0; Object.values(w.ex).forEach(a=>a.forEach(s=>{ sets++; vol+=(s.kg||0)*(s.reps||0); }));
+  return sets+' sets'+(vol?', volume '+fmt(vol)+' kg':'');
+}
+function renderTrain(){
+  const s=sess(UI.session), done=weekDone(UI.trainDate), d=getDraft();
+  let h='<h1 class="pagetitle">Training</h1><div class="chips" role="group" aria-label="Kies training">'
+    +SESSIONS.map(x=>'<button class="chip" data-act="setSession" data-id="'+x.id+'" aria-pressed="'+(x.id===s.id)+'"><span class="d">'+x.d+(done.has(x.id)?'<span class="done" aria-label="gedaan deze week"></span>':'')+'</span><span class="n">'+x.name+'</span></button>').join('')+'</div>';
+  if(UI.rest && UI.trainDate===todayStr()) h+='<p class="restnote">Vandaag is een rustdag in je schema. Hieronder staat de eerstvolgende training.</p>';
+  h+='<label class="field"><span>Datum</span><input type="date" id="trainDate" value="'+UI.trainDate+'" max="'+todayStr()+'"></label>';
+  h+='<p class="guide">'+esc(s.guide)+'</p>';
+  if(s.kind==='kracht'){
+    s.ex.forEach(e=>{
+      const prev=prevFor(e.id, UI.trainDate), rows=d.ex[e.id];
+      const range=(e.lo===e.hi?e.lo:e.lo+'–'+e.hi)+(e.unit==='sec'?' s':'');
+      let hint='';
+      if(prev && !e.bw && prev.sets.length>=e.sets && prev.sets.every(x=>x.reps>=e.hi)) hint='<p class="hint">Vorige keer alle sets op het maximum. Tijd voor iets meer gewicht.</p>';
+      h+='<article class="ex"><header><h3>'+esc(e.n)+'</h3><span class="target">'+e.sets+' × '+range+'</span></header>'
+        +(prev?'<p class="prev">Vorige keer ('+shortDate(prev.date)+'): '+esc(setsStr(prev.sets,e))+'</p>':'<p class="prev">Nog geen eerdere sessie.</p>')+hint
+        +'<div class="sets"><div class="sets-head"><span></span><span>'+(e.bw?'Extra kg':'kg')+'</span><span>'+(e.unit==='sec'?'Seconden':'Herhalingen')+'</span></div>'
+        +rows.map((r,i)=>{ const ps=prev&&prev.sets[i];
+          return '<div class="setrow"><span class="setno">'+(i+1)+'</span>'
+            +'<input type="text" inputmode="decimal" data-ex="'+e.id+'" data-set="'+i+'" data-field="kg" value="'+esc(r.kg)+'" placeholder="'+(ps&&ps.kg?esc(fmt1(ps.kg)):'')+'" aria-label="'+esc(e.n)+' set '+(i+1)+' gewicht">'
+            +'<input type="text" inputmode="numeric" data-ex="'+e.id+'" data-set="'+i+'" data-field="reps" value="'+esc(r.reps)+'" placeholder="'+(ps?esc(ps.reps):'')+'" aria-label="'+esc(e.n)+' set '+(i+1)+' '+(e.unit==='sec'?'seconden':'herhalingen')+'"></div>';
+        }).join('')+'</div><button class="link" data-act="addSet" data-ex="'+e.id+'">+ set toevoegen</button></article>';
+    });
+    h+='<label class="field"><span>Notitie</span><textarea data-note="1" placeholder="Hoe voelde het, iets om op te letten?">'+esc(d.note)+'</textarea></label>';
+    h+='<button class="primary cobalt wide" data-act="saveStrength">'+(findLog(s.id,UI.trainDate)?'Wijzigingen opslaan':'Training opslaan')+'</button>';
+  } else {
+    h+='<article class="ex"><div class="seg" role="group" aria-label="Soort loop">'+RUNTYPES.map(t=>'<button data-act="setRunType" data-type="'+t+'" aria-pressed="'+(d.type===t)+'">'+t+'</button>').join('')+'</div>'
+      +'<div class="grid3"><label class="field"><span>Afstand (km)</span><input type="text" inputmode="decimal" data-run="km" value="'+esc(d.km)+'"></label>'
+      +'<label class="field"><span>Minuten</span><input type="text" inputmode="numeric" data-run="min" value="'+esc(d.min)+'"></label>'
+      +'<label class="field"><span>Seconden</span><input type="text" inputmode="numeric" data-run="sec" value="'+esc(d.sec)+'"></label></div>'
+      +'<p class="pace num" id="pace"></p>'
+      +'<label class="field"><span>Zwaarte (1 heel licht, 10 maximaal)</span><input type="text" inputmode="numeric" data-run="rpe" value="'+esc(d.rpe)+'"></label>'
+      +'<label class="field"><span>Notitie</span><textarea data-run="note" placeholder="Bijvoorbeeld 6 × 800 m, gemiddeld 4:50 /km">'+esc(d.note)+'</textarea></label>'
+      +'<button class="primary cobalt wide" data-act="saveRun">'+(findLog(s.id,UI.trainDate)?'Wijzigingen opslaan':'Loop opslaan')+'</button></article>';
+  }
+  const hist=S.workouts.filter(w=>w.session===s.id).sort((a,b)=>a.date<b.date?1:-1).slice(0,8);
+  h+='<section class="card" style="margin-top:14px"><h2>Eerdere sessies</h2>';
+  h+= hist.length ? '<ul class="history">'+hist.map(w=>'<li><div><div class="h-date">'+esc(shortDate(w.date))+'</div><div class="h-sum">'+esc(logSummary(w))+'</div></div>'
+      +'<div class="h-actions"><button class="small-btn" data-act="openLog" data-date="'+w.date+'">Openen</button><button class="del" data-act="delLog" data-id="'+w.id+'" aria-label="Sessie verwijderen">×</button></div></li>').join('')+'</ul>'
+    : '<p class="muted">Nog niets opgeslagen voor deze training.</p>';
+  h+='</section>';
+  document.getElementById('view-train').innerHTML=h;
+  if(s.kind==='run') updatePace();
+}
+function updatePace(){
+  const el=document.getElementById('pace'); if(!el) return;
+  const d=getDraft(); const km=num(d.km), secs=(num(d.min)||0)*60+(num(d.sec)||0);
+  const p=paceStr(secs, km>0?km:0);
+  el.innerHTML=p?p+' <small>per km</small>':'–:– <small>per km</small>';
+}
+
+/* ================= VOORTGANG ================= */
+function renderProgress(){
+  const t=todayStr(), done=weekDone(t), w=weekStats(t);
+  const m=mondayOf(t), e=addDays(m,6), lm=addDays(m,-7);
+  let km=0, kmLast=0;
+  S.workouts.forEach(x=>{ if(x.kind==='run'){ if(x.date>=m&&x.date<=e) km+=x.km; else if(x.date>=lm&&x.date<m) kmLast+=x.km; } });
+  let h=(UI.backupText?'':'')+'<h1 class="pagetitle">Voortgang</h1>';
+  h+='<section class="card"><h2>Deze week</h2><div class="weekdots">'+SESSIONS.map(s=>'<span class="'+(done.has(s.id)?'ok':'')+'">'+s.d+' '+s.name.toLowerCase()+'</span>').join('')+'</div>'
+    +'<div class="stats3"><div class="stat"><div class="v num">'+done.size+'/5</div><div class="l">trainingen</div></div>'
+    +'<div class="stat"><div class="v num">'+fmt1(km)+'</div><div class="l">km gelopen (vorige week '+fmt1(kmLast)+')</div></div>'
+    +'<div class="stat"><div class="v num">'+(w.n?fmt(w.p):'–')+'</div><div class="l">g eiwit per dag</div></div></div>'
+    +(w.n?'<p class="muted" style="font-size:15px">Gemiddeld '+fmt(w.kcal)+' kcal per dag, doel '+fmt(S.settings.kcal)+'.</p>':'')+'</section>';
+
+  const ms=S.measures.slice().sort((a,b)=>a.date<b.date?-1:1);
+  h+='<section class="card"><h2>Lichaamsmaten</h2><p class="muted" style="font-size:15px">Meet elke 2–4 weken, ’s ochtends en op dezelfde manier. Bij recompositie zeggen taille en heup meer dan het gewicht.</p>'
+    +'<label class="field"><span>Datum</span><input type="date" id="ms_date" value="'+t+'" max="'+t+'"></label>'
+    +'<div class="grid3"><label class="field"><span>Gewicht (kg)</span><input id="ms_w" type="text" inputmode="decimal"></label>'
+    +'<label class="field"><span>Taille (cm)</span><input id="ms_t" type="text" inputmode="decimal"></label>'
+    +'<label class="field"><span>Heup (cm)</span><input id="ms_h" type="text" inputmode="decimal"></label></div>'
+    +'<button class="primary wide" data-act="saveMeasure">Meting opslaan</button>';
+  if(ms.length>=2) h+=chartSVG(ms);
+  if(ms.length){
+    const f=ms[0], l=ms[ms.length-1]; const parts=[];
+    if(f.t&&l.t&&ms.length>1) parts.push(diffTxt(l.t-f.t,'cm taille'));
+    if(f.h&&l.h&&ms.length>1) parts.push(diffTxt(l.h-f.h,'cm heup'));
+    if(f.w&&l.w&&ms.length>1) parts.push(diffTxt(l.w-f.w,'kg'));
+    if(parts.length) h+='<p style="margin:8px 0;font-weight:600">Sinds '+esc(shortDate(f.date))+': '+parts.join(', ')+'</p>';
+    h+='<div class="tablewrap"><table class="mtable"><thead><tr><th>Datum</th><th>Gewicht</th><th>Taille</th><th>Heup</th><th></th></tr></thead><tbody>'
+      +ms.slice().reverse().slice(0,10).map(x=>'<tr><td>'+esc(shortDate(x.date))+'</td><td class="num">'+(x.w?fmt1(x.w):'–')+'</td><td class="num">'+(x.t?fmt1(x.t):'–')+'</td><td class="num">'+(x.h?fmt1(x.h):'–')+'</td><td><button class="del" data-act="delMeasure" data-id="'+x.id+'" aria-label="Meting verwijderen">×</button></td></tr>').join('')
+      +'</tbody></table></div>';
+  }
+  h+='</section>';
+
+  h+='<section class="card"><h2>Doelen per dag</h2><div class="grid2"><label class="field"><span>Calorieën (kcal)</span><input id="g_kcal" type="text" inputmode="numeric" value="'+S.settings.kcal+'"></label>'
+    +'<label class="field"><span>Eiwit (g)</span><input id="g_p" type="text" inputmode="numeric" value="'+S.settings.p+'"></label></div>'
+    +'<button class="ghost wide" data-act="saveGoals">Doelen opslaan</button></section>';
+
+  h+='<section class="card"><h2>Back-up</h2><p class="muted" style="font-size:15px">Alles wordt alleen op dit toestel bewaard, in deze browser. Download af en toe een back-up, dan raak je niets kwijt bij een nieuwe telefoon.</p>'
+    +'<div class="btnrow"><button class="ghost" data-act="exportData">Back-up downloaden</button>'
+    +'<label class="ghost filelabel">Back-up terugzetten<input type="file" id="importFile" accept="application/json,.json" hidden></label></div>'
+    +(UI.backupText?'<p class="note">Downloaden lukt hier niet. Kopieer deze tekst en bewaar hem in een notitie:</p><textarea class="backuptext" readonly>'+esc(UI.backupText)+'</textarea>':'')
+    +'<button class="danger wide" data-act="wipe">Alle gegevens wissen</button></section>';
+  document.getElementById('view-progress').innerHTML=h;
+}
+function diffTxt(v,unit){ const r=Math.round(v*10)/10; return (r>0?'+':r<0?'−':'±')+fmt1(Math.abs(r))+' '+unit; }
+function chartSVG(ms){
+  const series=[{k:'t',c:'var(--pine)',l:'Taille'},{k:'h',c:'var(--cobalt)',l:'Heup'}].filter(s=>ms.filter(x=>x[s.k]).length>=2);
+  if(!series.length) return '';
+  const vals=[]; series.forEach(s=>ms.forEach(x=>{ if(x[s.k]) vals.push(x[s.k]); }));
+  let lo=Math.min(...vals), hi=Math.max(...vals); if(hi-lo<4){ const mid=(hi+lo)/2; lo=mid-2; hi=mid+2; }
+  const W=320,H=150,pl=34,pr=8,pt=10,pb=22, n=ms.length;
+  const x=i=>pl+(n===1?0:i*(W-pl-pr)/(n-1)), y=v=>pt+(hi-v)*(H-pt-pb)/(hi-lo);
+  let g='<svg class="chart" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Verloop taille en heup">';
+  [hi,(hi+lo)/2,lo].forEach(v=>{ g+='<line x1="'+pl+'" x2="'+(W-pr)+'" y1="'+y(v)+'" y2="'+y(v)+'" stroke="var(--line)" stroke-width="1"/><text x="'+(pl-6)+'" y="'+(y(v)+4)+'" text-anchor="end" font-size="11" fill="var(--muted)">'+Math.round(v)+'</text>'; });
+  g+='<text x="'+pl+'" y="'+(H-5)+'" font-size="11" fill="var(--muted)">'+esc(shortDate(ms[0].date))+'</text><text x="'+(W-pr)+'" y="'+(H-5)+'" text-anchor="end" font-size="11" fill="var(--muted)">'+esc(shortDate(ms[n-1].date))+'</text>';
+  series.forEach(s=>{
+    const pts=ms.map((m,i)=>m[s.k]?x(i)+','+y(m[s.k]):null).filter(Boolean);
+    g+='<polyline points="'+pts.join(' ')+'" fill="none" stroke="'+s.c+'" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>';
+    pts.forEach(p=>{ const a=p.split(','); g+='<circle cx="'+a[0]+'" cy="'+a[1]+'" r="3.5" fill="'+s.c+'"/>'; });
+  });
+  g+='</svg><div class="legend">'+series.map(s=>'<span><i style="background:'+s.c+'"></i>'+s.l+' (cm)</span>').join('')+'</div>';
+  return g;
+}
+
+/* ================= export / import ================= */
+async function exportData(){
+  const json=JSON.stringify(S), name='fit-logboek-'+todayStr()+'.json';
+  if(!(window.claude && typeof window.claude.use==='function')){
+    try{
+      const blob=new Blob([json],{type:'application/json'});
+      const file=(typeof File==='function')?new File([blob],name,{type:'application/json'}):null;
+      if(file && navigator.canShare && navigator.canShare({files:[file]})){
+        try{ await navigator.share({files:[file], title:'Fit logboek back-up'}); toast('Back-up gedeeld'); return; }
+        catch(e){ if(e && e.name==='AbortError') return; }
+      }
+      const url=URL.createObjectURL(blob), a=document.createElement('a');
+      a.href=url; a.download=name; document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(()=>URL.revokeObjectURL(url),4000); toast('Back-up gedownload'); return;
+    }catch(e){}
+  }
+  let dl=null;
+  try{ if(window.claude && typeof window.claude.use==='function') dl=await window.claude.use('downloads'); }catch(e){ dl=null; }
+  if(dl){
+    try{ await dl.save({filename:name, data:json}); toast('Back-up opgeslagen'); return; }
+    catch(e){ if(e && (e.code==='declined' || e.code==='rate_limited')) return; }
+  }
+  UI.backupText=json; renderProgress();
+}
+function importFile(file){
+  const r=new FileReader();
+  r.onload=()=>{
+    try{
+      const o=JSON.parse(r.result);
+      if(!o || typeof o!=='object' || !o.food || !Array.isArray(o.workouts)) throw new Error('bad');
+      S=Object.assign(defaults(), o); save(); renderAll(); toast('Back-up teruggezet');
+    }catch(e){ toast('Dit bestand is geen geldige back-up van het logboek.'); }
+  };
+  r.onerror=()=>toast('Het bestand kon niet worden gelezen.');
+  r.readAsText(file);
+}
+
+/* ================= navigatie ================= */
+function renderAll(){ renderFood(); renderTrain(); renderProgress(); }
+function setTab(t){
+  UI.tab=t;
+  ['food','train','progress'].forEach(x=>{ document.getElementById('view-'+x).hidden=(x!==t); });
+  document.querySelectorAll('.tabs button').forEach(b=>{ if(b.dataset.tab===t) b.setAttribute('aria-current','page'); else b.removeAttribute('aria-current'); });
+  if(t==='food') renderFood(); else if(t==='train') renderTrain(); else renderProgress();
+  window.scrollTo(0,0);
+}
+
+document.addEventListener('click', function(ev){
+  const tb=ev.target.closest('[data-tab]'); if(tb){ setTab(tb.dataset.tab); return; }
+  const b=ev.target.closest('[data-act]'); if(!b) return;
+  const a=b.dataset.act;
+  switch(a){
+    case 'foodPrev': UI.foodDate=addDays(UI.foodDate,-1); renderFood(); break;
+    case 'foodNext': if(UI.foodDate<todayStr()){ UI.foodDate=addDays(UI.foodDate,1); renderFood(); } break;
+    case 'openAdd': openAdd(b.dataset.meal); break;
+    case 'closeSheet': closeSheet(); break;
+    case 'setMeal': SH.meal=b.dataset.meal; document.querySelectorAll('#sheet [data-act="setMeal"]').forEach(x=>x.setAttribute('aria-pressed', String(x.dataset.meal===SH.meal))); const pb=document.querySelector('#sheet .primary'); if(pb) pb.textContent='Toevoegen aan '+SH.meal.toLowerCase(); break;
+    case 'pick': { const it=LISTCACHE[+b.dataset.i]; SH.food=it.f; SH.amt=it.amt; SH.step='detail'; renderSheet(); break; }
+    case 'back': SH.step='list'; renderSheet(); break;
+    case 'manual': SH.step='manual'; renderSheet(); break;
+    case 'addPicked': { const v=num(SH.amt); if(!(v>0)){ toast('Vul een hoeveelheid in.'); return; } addEntry(SH.food, v); break; }
+    case 'addManual': {
+      const n=document.getElementById('m_n').value.trim(), kcal=num(document.getElementById('m_kcal').value);
+      if(!n){ toast('Vul een naam in.'); return; } if(!(kcal>=0)){ toast('Vul de kcal in.'); return; }
+      const f={n:n, unit:'portie', base:1, def:1, kcal:kcal, p:num(document.getElementById('m_p').value)||0, c:num(document.getElementById('m_c').value)||0, f:num(document.getElementById('m_f').value)||0};
+      if(document.getElementById('m_save').checked){ S.custom=S.custom.filter(x=>x.n.toLowerCase()!==n.toLowerCase()); S.custom.unshift(f); }
+      addEntry(f,1); break;
+    }
+    case 'delCustom': if(armed(b,'Wis')){ S.custom.splice(+b.dataset.ci,1); save(); renderFoodList(); } break;
+    case 'delEntry': if(armed(b,'Wis')){ const d=UI.foodDate; S.food[d]=(S.food[d]||[]).filter(e=>e.id!==b.dataset.id); if(!S.food[d].length) delete S.food[d]; save(); renderFood(); } break;
+
+    case 'setSession': UI.session=b.dataset.id; renderTrain(); break;
+    case 'addSet': { const d=getDraft(); d.ex[b.dataset.ex].push({kg:'',reps:''}); saveSoon(); renderTrain(); break; }
+    case 'setRunType': { const d=getDraft(); d.type=b.dataset.type; saveSoon(); document.querySelectorAll('[data-act="setRunType"]').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.type===d.type))); break; }
+    case 'saveStrength': {
+      const s=sess(UI.session), d=getDraft(), ex={}; let count=0;
+      s.ex.forEach(e=>{ const sets=d.ex[e.id].map(r=>({kg:num(r.kg)||0, reps:num(r.reps)})).filter(r=>r.reps>0); if(sets.length){ ex[e.id]=sets; count+=sets.length; } });
+      if(!count){ toast('Vul minstens één set in.'); return; }
+      const old=findLog(s.id,UI.trainDate);
+      S.workouts=S.workouts.filter(w=>w!==old);
+      S.workouts.push({id:old?old.id:uid(), date:UI.trainDate, session:s.id, kind:'kracht', ex:ex, note:d.note||''});
+      delete S.drafts[draftKey()]; save(); renderTrain(); toast(old?'Training bijgewerkt':'Training opgeslagen'); window.scrollTo(0,0); break;
+    }
+    case 'saveRun': {
+      const s=sess(UI.session), d=getDraft(), km=num(d.km), secs=Math.round((num(d.min)||0)*60+(num(d.sec)||0));
+      if(!(km>0)){ toast('Vul de afstand in.'); return; } if(!(secs>0)){ toast('Vul de tijd in.'); return; }
+      const old=findLog(s.id,UI.trainDate);
+      S.workouts=S.workouts.filter(w=>w!==old);
+      S.workouts.push({id:old?old.id:uid(), date:UI.trainDate, session:s.id, kind:'run', type:d.type, km:km, secs:secs, rpe:num(d.rpe)||null, note:d.note||''});
+      delete S.drafts[draftKey()]; save(); renderTrain(); toast(old?'Loop bijgewerkt':'Loop opgeslagen'); window.scrollTo(0,0); break;
+    }
+    case 'openLog': UI.trainDate=b.dataset.date; renderTrain(); window.scrollTo(0,0); break;
+    case 'delLog': if(armed(b,'Wis')){ const w=S.workouts.find(x=>x.id===b.dataset.id); S.workouts=S.workouts.filter(x=>x.id!==b.dataset.id); if(w) delete S.drafts[w.session+'|'+w.date]; save(); renderTrain(); } break;
+
+    case 'saveMeasure': {
+      const date=document.getElementById('ms_date').value||todayStr();
+      const w=num(document.getElementById('ms_w').value), t=num(document.getElementById('ms_t').value), hh=num(document.getElementById('ms_h').value);
+      if(isNaN(w)&&isNaN(t)&&isNaN(hh)){ toast('Vul minstens één maat in.'); return; }
+      S.measures=S.measures.filter(x=>x.date!==date);
+      S.measures.push({id:uid(), date:date, w:isNaN(w)?null:w, t:isNaN(t)?null:t, h:isNaN(hh)?null:hh});
+      save(); renderProgress(); toast('Meting opgeslagen'); break;
+    }
+    case 'delMeasure': if(armed(b,'Wis')){ S.measures=S.measures.filter(x=>x.id!==b.dataset.id); save(); renderProgress(); } break;
+    case 'saveGoals': {
+      const k=num(document.getElementById('g_kcal').value), p=num(document.getElementById('g_p').value);
+      if(!(k>800&&k<6000)||!(p>20&&p<400)){ toast('Controleer de doelen: kcal tussen 800 en 6000, eiwit tussen 20 en 400.'); return; }
+      S.settings.kcal=Math.round(k); S.settings.p=Math.round(p); save(); toast('Doelen opgeslagen'); break;
+    }
+    case 'exportData': exportData(); break;
+    case 'wipe': if(armed(b,'Tik nogmaals om alles te wissen')){ S=defaults(); save(); UI.backupText=null; renderAll(); toast('Alle gegevens gewist'); } break;
+  }
+});
+
+document.addEventListener('input', function(ev){
+  const t=ev.target;
+  if(t.id==='q'){ SH.q=t.value; renderFoodList(); return; }
+  if(t.id==='amt'){ SH.amt=t.value; updatePreview(); return; }
+  if(t.dataset.ex){ const d=getDraft(); d.ex[t.dataset.ex][+t.dataset.set][t.dataset.field]=t.value; saveSoon(); return; }
+  if(t.dataset.note){ getDraft().note=t.value; saveSoon(); return; }
+  if(t.dataset.run){ const d=getDraft(); d[t.dataset.run]=t.value; saveSoon(); if(t.dataset.run==='km'||t.dataset.run==='min'||t.dataset.run==='sec') updatePace(); return; }
+});
+document.addEventListener('change', function(ev){
+  const t=ev.target;
+  if(t.id==='trainDate' && t.value){ UI.trainDate=t.value>todayStr()?todayStr():t.value; renderTrain(); }
+  if(t.id==='importFile' && t.files && t.files[0]){ importFile(t.files[0]); t.value=''; }
+});
+document.getElementById('backdrop').addEventListener('click', function(ev){ if(ev.target.id==='backdrop') closeSheet(); });
+document.addEventListener('keydown', function(ev){ if(ev.key==='Escape' && SH) closeSheet(); });
+
+document.getElementById('storageBanner').hidden=storageOk;
+renderAll();
+})();
+</script>
+</body>
+</html>
